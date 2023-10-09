@@ -1,32 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmatos-n <gmatos-n@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/03 17:13:32 by gmatos-n          #+#    #+#             */
-/*   Updated: 2023/10/09 17:56:55 by gmatos-n         ###   ########.fr       */
+/*   Created: 2023/10/09 18:20:45 by gmatos-n          #+#    #+#             */
+/*   Updated: 2023/10/09 18:44:52 by gmatos-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "libft.h"
 
-# include <string.h>
-# include <stdio.h>
-
-# include <unistd.h>
-# include <stdlib.h>
-
-
-typedef struct s_list
+char	*ft_strchr(const char *str, int c)
 {
-	void			*content;
-	struct s_list	*next;
-}	t_list;
+	if (!str)
+		return (NULL);
+	while (*str != c)
+	{
+		if (*str == '\0')
+			return (NULL);
+		str++;
+	}
+	return ((char *)str);
+}
 
-//Functions Part 1 - Libc functions
-size_t	ft_strlen(const char *str);
+/* int main(void)
+{
+	char *str = "Hello World";
+	char *ptr1;
+	char *ptr2;
 
-#endif
+	ptr1 = ft_strchr(str, 'H');
+	printf("42 - %s\n", ptr1);
+	ptr2 = strchr(str, 'H');
+	printf("OG - %s\n", ptr2);
+	return 0;
+} */

@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmatos-n <gmatos-n@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/03 17:13:32 by gmatos-n          #+#    #+#             */
-/*   Updated: 2023/10/09 17:56:55 by gmatos-n         ###   ########.fr       */
+/*   Created: 2023/10/09 18:19:43 by gmatos-n          #+#    #+#             */
+/*   Updated: 2023/10/09 18:20:00 by gmatos-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "libft.h"
 
-# include <string.h>
-# include <stdio.h>
-
-# include <unistd.h>
-# include <stdlib.h>
-
-
-typedef struct s_list
+int	ft_tolower(int c)
 {
-	void			*content;
-	struct s_list	*next;
-}	t_list;
-
-//Functions Part 1 - Libc functions
-size_t	ft_strlen(const char *str);
-
-#endif
+	if (c >= 'A' && c <= 'z')
+		c += 32;
+	return (c);
+}
