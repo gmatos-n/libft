@@ -1,37 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmatos-n <gmatos-n@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/09 18:56:56 by gmatos-n          #+#    #+#             */
-/*   Updated: 2023/10/12 22:46:07 by gmatos-n         ###   ########.fr       */
+/*   Created: 2023/10/12 20:39:37 by gmatos-n          #+#    #+#             */
+/*   Updated: 2023/10/12 20:50:04 by gmatos-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(const char *str1, const char *str2, size_t n)
+/* void test_function(unsigned int index, char *c)
 {
-	if (n == 0)
-		return (0);
-	while (*str1 && *str2 && n > 1)
-	{
-		if (*str1 != *str2)
-			break ;
-		str1++;
-		str2++;
-		n--;
-	}
-	return ((unsigned char)*str1 - (unsigned char)*str2);
+    *c = *c + index;
+} */
+
+void	ft_striteri(char *s, void (*f) (unsigned int, char *))
+{
+	unsigned int	i;
+
+	if (!s || !f)
+		return ;
+	i = 0;
+	while (*s)
+		f(i++, s++);
 }
 
 /* int main()
 {
-	char str1[] = "Hello";
-	char str2[] = "Hel1lo";
-	printf("%d\n", ft_strncmp(str1, str2, 3));
-	printf("%d\n", strncmp(str1, str2, 3));
-	return (0);
+    char str[] = "Hello";
+
+    printf("Original: %s\n", str);
+    ft_striteri(str, test_function);
+    printf("After Iteration: %s\n", str);
+
+    return 0;
 } */

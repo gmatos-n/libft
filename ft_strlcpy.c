@@ -6,7 +6,7 @@
 /*   By: gmatos-n <gmatos-n@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:21:23 by gmatos-n          #+#    #+#             */
-/*   Updated: 2023/10/09 18:17:22 by gmatos-n         ###   ########.fr       */
+/*   Updated: 2023/10/12 21:31:08 by gmatos-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ size_t	ft_strlcpy(char *dest, const char *src, unsigned int size)
 
 	i = 0;
 	count = 0;
-	if (!dest || !src)
-		return (0);
 	while (src[count])
 		count++;
 	if (size == 0)

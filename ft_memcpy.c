@@ -6,7 +6,7 @@
 /*   By: gmatos-n <gmatos-n@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 19:13:04 by gmatos-n          #+#    #+#             */
-/*   Updated: 2023/10/03 19:30:57 by gmatos-n         ###   ########.fr       */
+/*   Updated: 2023/10/12 22:06:34 by gmatos-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
 	unsigned char	*temp_dest;
 	unsigned char	*temp_src;
-	size_t			i;
+	unsigned int	i;
 
 	temp_dest = (unsigned char *)dest;
 	temp_src = (unsigned char *)src;
@@ -24,7 +24,10 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	if (temp_dest == temp_src)
 		return (dest);
 	while (i < n)
-		temp_dest[i++] = temp_src[i];
+	{
+		temp_dest[i] = temp_src[i];
+		i++;
+	}
 	return (dest);
 }
 

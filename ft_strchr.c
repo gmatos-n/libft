@@ -6,7 +6,7 @@
 /*   By: gmatos-n <gmatos-n@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 18:20:45 by gmatos-n          #+#    #+#             */
-/*   Updated: 2023/10/09 18:44:52 by gmatos-n         ###   ########.fr       */
+/*   Updated: 2023/10/12 22:49:40 by gmatos-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 char	*ft_strchr(const char *str, int c)
 {
-	if (!str)
-		return (NULL);
-	while (*str != c)
+	while (*str != (char)c)
 	{
-		if (*str == '\0')
+		if (!*str)
 			return (NULL);
 		str++;
 	}
@@ -27,13 +25,13 @@ char	*ft_strchr(const char *str, int c)
 
 /* int main(void)
 {
-	char *str = "Hello World";
+	char *str = "teste";
 	char *ptr1;
 	char *ptr2;
 
-	ptr1 = ft_strchr(str, 'H');
+	ptr1 = ft_strchr(str, '\0');
 	printf("42 - %s\n", ptr1);
-	ptr2 = strchr(str, 'H');
+	ptr2 = strchr(str, '\0');
 	printf("OG - %s\n", ptr2);
 	return 0;
 } */
