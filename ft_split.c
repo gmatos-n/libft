@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmatos-n <gmatos-n@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: gmatos-n <gmatos-n@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 18:22:32 by gmatos-n          #+#    #+#             */
-/*   Updated: 2023/10/12 23:51:43 by gmatos-n         ###   ########.fr       */
+/*   Updated: 2023/10/13 22:12:28 by gmatos-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,22 @@ void	write_word(char *word, char const *s, char c)
 	word[i] = '\0';
 }
 
-void	free_split(char **split, char const *s, char c)
+int	alloc_and_free(char **split, int word, int j)
 {
 	int	i;
 
 	i = 0;
-	while (i < ft_count_words(s, c))
-		free(split[i++]);
+	split[word] = (char *)malloc(j + 1);
+	if (!split[word])
+	{
+		while (i < word)
+		{
+			free(split[i]);
+			i++;
+		}
+		return (1);
+	}
+	return (0);
 }
 
 int	main_split(char **split, char const *s, char c)
@@ -58,7 +67,7 @@ int	main_split(char **split, char const *s, char c)
 	int	i;
 	int	j;
 	int	word;
-	int	k;
+	int	error;
 
 	word = 0;
 	i = 0;
@@ -71,17 +80,9 @@ int	main_split(char **split, char const *s, char c)
 			j = 0;
 			while (s[i + j] != c && s[i + j])
 				j++;
-			split[word] = (char *)malloc(j + 1);
-			if (!split[word])
-			{
-				k = 0;
-				while (k < word)
-				{
-					free(split[k]);
-					k++;
-				}
+			error = alloc_and_free(split, word, j);
+			if (error)
 				return (1);
-			}
 			write_word(split[word], s + i, c);
 			i += j;
 			word++;
