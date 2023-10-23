@@ -6,7 +6,7 @@
 /*   By: gmatos-n <gmatos-n@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:13:32 by gmatos-n          #+#    #+#             */
-/*   Updated: 2023/10/12 21:16:37 by gmatos-n         ###   ########.fr       */
+/*   Updated: 2023/10/23 18:39:55 by gmatos-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,8 @@ void		ft_putchar_fd(char c, int fd);
 void		ft_putstr_fd(char *s, int fd);
 void		ft_putendl_fd(char *s, int fd);
 void		ft_putnbr_fd(int n, int fd);
+
+//Functions Bonus Part - Linked List functions
+t_list		*ft_lstnew(void *content);
 
 #endif
