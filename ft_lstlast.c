@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmatos-n <gmatos-n@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/23 19:01:11 by gmatos-n          #+#    #+#             */
-/*   Updated: 2023/11/23 20:43:23 by gmatos-n         ###   ########.fr       */
+/*   Created: 2023/11/23 20:25:41 by gmatos-n          #+#    #+#             */
+/*   Updated: 2023/11/23 20:43:20 by gmatos-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_lstsize(t_list *lst)
+t_list	*ft_lstlast(t_list *lst)
 {
-	int		size;
 	t_list	*n;
 
-	size = 0;
 	n = lst;
-	while (n)
-	{
-		size++;
+	if (!n)
+		return (NULL);
+	while (n->next)
 		n = n->next;
-	}
-	return (size);
+	return (n);
 }
 
 /* int main()
@@ -41,6 +38,6 @@ int	ft_lstsize(t_list *lst)
 	n3 = ft_lstnew(str3);
 	ft_lstadd_front(&n, n2);
 	ft_lstadd_front(&n, n3);
-	printf("%d\n", ft_lstsize(n));
+	printf("%s\n", (char *)ft_lstlast(n)->content);
 	return (0);
 } */

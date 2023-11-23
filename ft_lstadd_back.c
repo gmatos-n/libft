@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmatos-n <gmatos-n@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/23 19:01:11 by gmatos-n          #+#    #+#             */
-/*   Updated: 2023/11/23 20:43:23 by gmatos-n         ###   ########.fr       */
+/*   Created: 2023/11/23 20:36:03 by gmatos-n          #+#    #+#             */
+/*   Updated: 2023/11/23 20:43:34 by gmatos-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_lstsize(t_list *lst)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	int		size;
-	t_list	*n;
+	t_list	*last;
 
-	size = 0;
-	n = lst;
-	while (n)
+	if (!lst || !new)
+		return ;
+	if (*lst == NULL)
 	{
-		size++;
-		n = n->next;
+		*lst = new;
+		return ;
 	}
-	return (size);
+	last = ft_lstlast(*lst);
+	last->next = new;
 }
 
 /* int main()
@@ -39,8 +39,10 @@ int	ft_lstsize(t_list *lst)
 	n = ft_lstnew(str);
 	n2 = ft_lstnew(str2);
 	n3 = ft_lstnew(str3);
-	ft_lstadd_front(&n, n2);
-	ft_lstadd_front(&n, n3);
-	printf("%d\n", ft_lstsize(n));
+	ft_lstadd_back(&n, n2);
+	ft_lstadd_back(&n, n3);
+	printf("%s\n", (char *)n->content);
+	printf("%s\n", (char *)n->next->content);
+	printf("%s\n", (char *)n->next->next->content);
 	return (0);
 } */
