@@ -1,35 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmatos-n <gmatos-n@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/13 22:20:57 by gmatos-n          #+#    #+#             */
-/*   Updated: 2023/11/24 21:41:22 by gmatos-n         ###   ########.fr       */
+/*   Created: 2023/11/24 21:42:22 by gmatos-n          #+#    #+#             */
+/*   Updated: 2023/11/24 21:54:45 by gmatos-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(void *content)
+/* void	print_content(void *content)
+{
+	if (content != NULL)
+	{
+		printf("%s\n", (char *)content);
+	}
+} */
+
+void	ft_lstiter(t_list *lst, void (*f)(void	*))
 {
 	t_list	*n;
 
-	n = malloc(sizeof(t_list));
-	if (!n)
-		return (NULL);
-	n->content = content;
-	n->next = NULL;
-	return (n);
+	n = lst;
+	while (n)
+	{
+		f(n->content);
+		n = n->next;
+	}
 }
 
 /* int main()
 {
 	t_list *n;
-	char *str = "Hello World";
+	t_list *n2;
+	t_list *n3;
+	char *str = "Hello World n1";
+	char *str2 = "Hello World n2";
+	char *str3 = "Hello World n3";
 
 	n = ft_lstnew(str);
-	printf("%s\n", (char *)n->content);
+	n2 = ft_lstnew(str2);
+	n3 = ft_lstnew(str3);
+	ft_lstadd_front(&n, n2);
+	ft_lstadd_front(&n, n3);
+	ft_lstiter(n, print_content);
 	return (0);
 } */
