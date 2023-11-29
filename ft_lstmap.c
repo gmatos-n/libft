@@ -6,69 +6,62 @@
 /*   By: gmatos-n <gmatos-n@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 21:44:16 by gmatos-n          #+#    #+#             */
-/*   Updated: 2023/11/24 22:07:13 by gmatos-n         ###   ########.fr       */
+/*   Updated: 2023/11/29 19:51:34 by gmatos-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/* static t_list	*ft_lstnewdup(void *content)
+/* void *append_mapped(void *content)
 {
-	t_list	*n;
+    char *original = (char *)content;
+    char *new_str;
+    if (original == NULL)
+        return NULL;
 
-	n = malloc(sizeof(t_list));
-	if (!n)
-		return (NULL);
-	n->content = ft_strdup(content);
-	if (!n->content)
-	{
-		free(n);
-		return (NULL);
-	}
-	n->next = NULL;
-	return (n);
-}
+    new_str = malloc(strlen(original) + strlen(" Mapped") + 1);
+    if (new_str == NULL)
+        return NULL;
 
-void	print_content(void *content)
-{
-	if (content != NULL)
-	{
-		printf("%s\n", (char *)content);
-	}
+    strcpy(new_str, original);
+    strcat(new_str, " Mapped");
+    return new_str;
 }
 
 void	ft_del(void *content)
 {
 	free(content);
-}
+} */
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*n;
-	t_list	*tmp;
+	t_list	*new_list;
+	t_list	*new_node;
+	void	*new_content;
 
-	if (!lst)
-		return (NULL);
-	n = ft_lstnewdup(f(lst->content));
-	if (!n)
-		return (NULL);
-	tmp = n;
-	lst = lst->next;
+	new_list = NULL;
 	while (lst)
 	{
-		tmp->next = ft_lstnewdup(f(lst->content));
-		if (!tmp->next)
+		new_content = f(lst->content);
+		if (!new_content)
 		{
-			ft_lstclear(&n, del);
+			ft_lstclear(&new_list, del);
 			return (NULL);
 		}
-		tmp = tmp->next;
+		new_node = ft_lstnew(new_content);
+		if (!new_node)
+		{
+			del(new_content);
+			ft_lstclear(&new_list, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&new_list, new_node);
 		lst = lst->next;
 	}
-	return (n);
+	return (new_list);
 }
 
-int main()
+/* int main()
 {
 	t_list *n;
 	t_list *n2;
@@ -77,11 +70,17 @@ int main()
 	char *str2 = "Hello World n2";
 	char *str3 = "Hello World n3";
 
-	n = ft_lstnewdup(str);
-	n2 = ft_lstnewdup(str2);
-	n3 = ft_lstnewdup(str3);
+	n = ft_lstnew(ft_strdup(str));
+	n2 = ft_lstnew(ft_strdup(str2));
+	n3 = ft_lstnew(ft_strdup(str3));
 	ft_lstadd_front(&n, n2);
 	ft_lstadd_front(&n, n3);
-	ft_lstmap(n, print_content, ft_del);
+	printf("%s\n", (char *)n->content);
+	printf("%s\n", (char *)n->next->content);
+	printf("%s\n", (char *)n->next->next->content);
+	t_list *newlst = ft_lstmap(n, append_mapped, ft_del);
+	printf("%s\n", (char *)newlst->content);
+	printf("%s\n", (char *)newlst->next->content);
+	printf("%s\n", (char *)newlst->next->next->content);
 	return (0);
 } */
