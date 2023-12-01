@@ -20,7 +20,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	$(AR) $(NAME) $(OBJS)
 
-bonus: $(BOBJS)
+bonus: $(NAME) $(BOBJS)
 	$(AR) $(NAME) $(BOBJS)
 
 clean:
